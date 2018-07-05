@@ -1,0 +1,62 @@
+<view class="container">
+	<view class="header">
+		<view data-nav="zixun" bind:tap="toggleNav" class="zixun {{currentNav=='zixun'?'active':''}}">
+			<text>资讯</text>
+		</view>
+		<view data-nav="haodian" bind:tap="toggleNav" class="haodian {{currentNav=='haodian'?'active':''}}">
+			<text>好店</text>
+		</view>
+	</view>
+	<view style="display: {{currentNav=='zixun'?'block':'none'}}" class="zixun-box">
+		<view bind:tap="newsDetail" s-for="item in zixunData" class="zixun-item">
+			<view class="img-box">
+				<image src="{{item.cover}}"></image>
+			</view>
+			<view class="zixun-desc">
+				<view class="title">
+					<text>{{item.title}}</text>
+				</view>
+				<view class="score">
+					<view class="t"><text>{{item.tag}}</text></view>
+					<view class="t"><text class="iconfont icon-huifu"></text><text>{{item.comment}}</text></view>
+					<view class="t"><text>{{item.create_time}}</text></view>
+				</view>
+			</view>
+		</view>
+	</view>
+
+	<view style="display: {{currentNav=='haodian'?'block':'none'}}" class="haodian-box">
+    		<view s-for="list in shopList" class="shop-list">
+    			<view class="shop-top">
+    				<view class="shop-name">
+    					<view class="shop-img">
+    						<image src="{{list.shop_img}}"></image>
+    					</view>
+    					<view><text>{{list.shop_name}}</text></view>
+    				</view>
+    				<view data-id={{list.id}} bind:tap="linkToShop" class="go-shop">
+    					<text>进店</text>
+    				</view>
+    			</view>
+
+    			<view class="goods">
+    				<view s-for="goods in list.goods_info" class="goods-item">
+    					<view class="goods-img">
+    						<image src="{{goods.cover}}"></image>
+    					</view>
+    					<view class="goods-price">&#65509;{{goods.price}}</view>
+    				</view>
+
+    			</view>
+				
+				<view class="score">
+					<view class="score-item"><text>销量{{list.sales_volume}}</text></view>
+					<view class="score-item"><text>好评{{list.praise_rate}}%</text></view>
+					<view class="score-item"><text>收藏人数{{list.collection_volume}}</text></view>
+				</view>
+    		</view>
+	</view>
+    <view style="display: {{noMore?'block':'none'}}" class="nomore">
+        <text>---暂无更多数据---</text>
+    </view>
+</view>

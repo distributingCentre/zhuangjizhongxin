@@ -1,0 +1,57 @@
+<view class="container">
+    <view class="order">
+        <view class="goods-cover">
+            <image src="{{order.goods_img}}"></image>
+        </view>
+        <view class="desc">
+            <view class="goods-name">
+                <text>{{order.goods_name}}</text>
+            </view>
+            <view class="price">
+                <text>￥{{order.goods_price}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="store">
+        <view class="stars">
+            <text>商品评分</text>
+            <view class="star">
+                <text bind:tap="stars" style="color: {{stars>=1?'red':'#c7bfbf'}};" data-stars="1" class="iconfont icon-demo05"></text>
+                <text bind:tap="stars" style="color: {{stars>=2?'red':'#c7bfbf'}};" data-stars="2" class="iconfont icon-demo05"></text>
+                <text bind:tap="stars" style="color: {{stars>=3?'red':'#c7bfbf'}};" data-stars="3" class="iconfont icon-demo05"></text>
+                <text bind:tap="stars" style="color: {{stars>=4?'red':'#c7bfbf'}};" data-stars="4" class="iconfont icon-demo05"></text>
+                <text bind:tap="stars" style="color: {{stars>=5?'red':'#c7bfbf'}};" data-stars="5" class="iconfont icon-demo05"></text>
+            </view>
+        </view>
+        <view class="comment">
+            <textarea class="com-content" placeholder="分享体验心得！给其他买家一个参考！" maxlength="300" bindinput="commentContent" bindfocus="bindFocus" bindblur="bindBlur" bindlinechange="bindLinechange" />
+            <view class="max">
+            	<text>0/300</text>
+            </view>
+        </view>
+    </view>
+    <view class="pictures">
+    	<view class="title">
+    		<text>添加图片</text>
+    		<text class="alt">你最多可以上传8张图片</text>
+    	</view>
+    	<view class="pic-box">
+    		<view s-for="pic in tempPicUrl" class="pic">
+    			<image src="{{pic.url}}"></image>
+                <text data-id="{{pic.id}}" bind:tap="delPic" class="iconfont icon-chexiao"></text>
+    		</view>
+    		<view style="display: {{tempPicUrl.length>=8?'none':'block'}}" bind:tap="addPic" class="pic add-pic">
+    			<text class="iconfont icon-jia"></text>
+    		</view>
+    	</view>
+    	<view class="anonymous">
+            <checkbox-group bind:change="checkBoxChange">
+        		<checkbox id="checkbox" class="checkbox" value="1" color="red" ></checkbox>
+            </checkbox-group>
+    		<label for="checkbox">匿名评价</label>
+    	</view>
+    </view>
+    <view data-id="{{order.id}}" bind:tap="commit" class="btn">
+    	<text>提交评价</text>
+    </view>
+</view>

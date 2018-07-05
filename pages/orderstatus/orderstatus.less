@@ -1,0 +1,287 @@
+@import '../../public/css/iconfont.css';
+@main-color: #c7bfbf;
+@hightlight-color: #fa373d;
+@border-color: #f4f4f4;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    background-color: @main-color;
+    margin-bottom: 98rpx;
+    .content {
+        width: 100%;
+        .status {
+            width: 100%;
+            .statu {
+                width: 100%;
+                background-color: #ffffff;
+                height: 150rpx;
+                display: flex;
+                justify-content: space-between;
+                padding: 0 40rpx;
+                align-items: center;
+                border-bottom: 1rpx solid @border-color;
+                .desc {
+                    .current-status {
+                        font-size: 40rpx;
+                        font-weight: 900;
+                        .cancel-reason {
+                            display: inline-block;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                            font-size: 24rpx;
+                            color: @hightlight-color;
+                        }
+                    }
+                    .order-number {
+                        font-size: 24rpx;
+                        margin-top: 20rpx;
+                    }
+                }
+                .copy {
+                    width: 96rpx;
+                    height: 48rpx;
+                    line-height: 48rpx;
+                    text-align: center;
+                    border-radius: 24rpx;
+                    border: 1rpx solid @main-color;
+                    color: @main-color;
+                    font-size: 24rpx;
+                }
+            }
+
+            .user-info {
+                width: 100%;
+                background-color: #ffffff;
+                height: 150rpx;
+                display: flex;
+                justify-content: space-between;
+                padding: 0 40rpx;
+                align-items: center;
+                .box {
+                    .desc {
+                        font-size: 40rpx;
+                        font-weight: 900;
+                        margin-bottom: 20rpx;
+                        .username {
+                            display: inline-block;
+                            margin-right: 80rpx;
+                        }
+                    }
+                    .address {
+                        font-size: 24rpx;
+                    }
+                }
+                .tag {
+                    width: 96rpx;
+                    height: 48rpx;
+                    line-height: 48rpx;
+                    text-align: center;
+                    border-radius: 24rpx;
+                    border: 1rpx solid @hightlight-color;
+                    color: @hightlight-color;
+                    font-size: 24rpx;
+                }
+            }
+        }
+
+        .shops {
+            width: 100%;
+            background-color: #ffffff;
+            margin: 15rpx 0;
+            .shop {
+                padding: 0 40rpx;
+                .shopname {
+                    font-size: 26rpx;
+                    font-weight: 900;
+                    height: 72rpx;
+                    line-height: 72rpx;
+                    .iconfont {
+                        color: @main-color;
+                        font-weight: normal;
+                        display: inline-block;
+                        padding-left: 10rpx;
+                    }
+                }
+
+                .goods {
+                    width: 100%;
+                    .list {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: 10rpx 0;
+                        .img {
+                            width: 160rpx;
+                            height: 160rpx;
+                            image {
+                                width: 160rpx;
+                                height: 160rpx;
+                            }
+                        }
+                        .detail {
+                            padding-left: 15rpx;
+                            &>.desc {
+                                font-size: 30rpx;
+                                line-height: 45rpx;
+                                overflow: hidden;
+
+                                text-overflow: ellipsis;
+
+                                display: -webkit-box;
+
+                                -webkit-box-orient: vertical;
+
+                                -webkit-line-clamp: 2;
+                            }
+                            .price {
+                                color: @hightlight-color;
+                                font-size: 24rpx;
+                                margin-top: 15rpx;
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                text {
+                                    font-size: 36rpx;
+                                }
+                                .goods-num {
+                                    color: #000000;
+                                    font-size: 26rpx;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .details {
+            background-color: #ffffff;
+            padding: 0 40rpx 30rpx;
+            .item {
+                padding: 15rpx 0 0;
+                .p {
+                    padding: 15rpx 0 0;
+                    font-size: 26rpx;
+                }
+            }
+            .amount {
+                width: 100%;
+                height: 98rpx;
+                line-height: 98rpx;
+                font-size: 26rpx;
+                text-align: right;
+                .total {
+                    font-size: 48rpx;
+                    color: @hightlight-color;
+                }
+            }
+        }
+    }
+}
+
+.handle {
+    width: 100%;
+    height: 98rpx;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    box-shadow: -2rpx 0 5rpx @main-color;
+    .item {
+        width: 50%;
+        height: 98rpx;
+        line-height: 98rpx;
+        text-align: center;
+        font-size: 36rpx;
+        font-weight: 900;
+    }
+    .cancel {
+        width: 100%;
+        height: 98rpx;
+        line-height: 98rpx;
+        text-align: center;
+        font-size: 36rpx;
+        font-weight: 900;
+    }
+    .left {
+        color: @hightlight-color;
+        background-color: #ffffff;
+    }
+    .right {
+        color: #ffffff;
+        background-color: @hightlight-color
+    }
+}
+
+
+// 未支付状态取消订单模态框
+.nopay-modal {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .6);
+    position: absolute;
+    top: 0;
+    left: 0;
+    .box {
+        width: 670rpx;
+        background-color: #ffffff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        border-radius: 10rpx;
+        .title {
+            height: 72rpx;
+            line-height: 72rpx;
+            font-size: 28rpx;
+            padding: 0 15rpx;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cancel-content {
+            font-size: 24rpx;
+            border-top: 1rpx solid @border-color;
+            border-bottom: 1rpx solid @border-color;
+            padding: 20rpx 40rpx;
+            .username, .alinumber {
+
+                .ali {
+                    border: 1rpx solid @border-color;
+                    margin: 20rpx 0;
+                    .input {
+                        padding: 0 5px;
+                    }
+
+                }
+            }
+            .t {
+                font-weight: 900;
+                padding-bottom: 20rpx;
+            }
+            .picker-box {
+                border: 1rpx solid @border-color;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                padding: 15rpx 10rpx;
+            }
+        }
+
+        .cancel-btn {
+            width: 100%;
+            height: 72rpx;
+            font-size: 30rpx;
+            color: @hightlight-color;
+            font-weight: 900;
+            line-height: 72rpx;
+            text-align: center;
+        }
+    }
+}

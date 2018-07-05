@@ -1,0 +1,22 @@
+<view class="container">
+	<view class="content">
+		<view class="list">
+			<view class="left">
+				<view class="img">
+					<image src="../../images/payfor/zhifubao.png"></image>
+				</view>
+				<view class="tilte">
+					<text>支付宝支付</text>
+				</view>
+			</view>
+			<view>
+				<checkbox-group bind:change="checkboxChange">
+					<checkbox value="" color="red" checked="true"></checkbox>
+				</checkbox-group>
+			</view>
+		</view>
+	</view>
+	<view class="btn" bind:tap="btnPay">
+		<text>立即支付</text>
+	</view>
+</view>

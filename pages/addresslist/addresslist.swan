@@ -1,0 +1,39 @@
+<view class="container">
+	<view class="lists">
+		<view s-for="list in addressList" class="list">
+			<view class="info">
+				<view class="detail">
+					<view class="user">
+						<text class="username">{{list.consignee}}</text>
+						<text>{{list.mobile}}</text>
+					</view>
+					<view class="address">
+						<text>{{list.detailed_address}}</text>
+					</view>
+				</view>
+				<view class="tag"><text>{{list.title}}</text></view>
+			</view>
+			<view class="config">
+				<view>
+					<checkbox-group bind:change="checkboxChange">
+						<checkbox  value="{{list.id}}" checked="{{list.is_default==1?true:false}}" color="red"></checkbox>
+					</checkbox-group>
+					<text>设为默认</text>
+				</view>
+				<view class="handle">
+					<view data-type="1" data-data={{list}} bind:tap="editAddress">
+						<text class="iconfont icon-bianji"></text>
+						<text>编辑</text>
+					</view>
+					<view data-id={{list.id}} bind:tap="delAddress">
+						<text class="iconfont icon-shanchu"></text>
+						<text>删除</text>
+					</view>
+				</view>				
+			</view>
+		</view>
+	</view>
+	<view class="btn" bind:tap="addAddress">
+		<text>新增地址</text>
+	</view>
+</view>

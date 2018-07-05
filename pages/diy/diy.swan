@@ -1,0 +1,107 @@
+<view id="diy-container">
+    <view class="diy-header">
+        <text data-alias="chassis" class="{{currentAlias==='chassis'? 'active' : ''}}" bind:tap="aliasToggle">基础配件</text>
+        <text data-alias="system" class="{{currentAlias==='system'? 'active' : ''}}" bind:tap="aliasToggle">软件配件</text>
+        <text data-alias="guarantee" class="{{currentAlias==='guarantee'? 'active' : ''}}" bind:tap="aliasToggle">服务支持</text>
+    </view>
+    <view class="main jcpj-box">
+        <!-- 基础配件 -->
+        <view id="basic" style="display: {{currentAlias==='chassis'? 'block': 'none'}};" class="category">
+            <view 
+            s-for="item in chassis"
+            data-id="{{item.id}}" data-unique-alias="{{item.alias}}" bind:tap="categoryToggle" class="cat-item {{goodsCateId==item.id?'active': ''}}">
+                <text class="iconfont icon-{{item.xicon}}"></text>
+                <text>{{item.name}}</text>
+            </view>
+        </view>
+
+        <!-- 软件配件 -->
+        <view id="soft" style="display: {{currentAlias==='system'? 'block': 'none'}};" class="category">
+            <view 
+            s-for="item in system"
+            data-id="{{item.id}}"
+            data-unique-alias="{{item.alias}}"
+            bind:tap="categoryToggle" class="cat-item {{goodsCateId==item.id?'active': ''}}">
+                <text class="iconfont icon-{{item.xicon}}"></text>
+                <text>{{item.name}}</text>
+            </view>
+        </view>
+
+        <!-- 服务支持 -->
+        <view id="service" style="display: {{currentAlias==='guarantee'? 'block': 'none'}};" class="category">
+            <view
+            s-for="item in guarantee"
+            data-id="{{item.id}}" 
+            data-unique-alias="{{item.alias}}"
+            bind:tap="categoryToggle" class="cat-item {{goodsCateId==item.id?'active': ''}}">
+                <text class="iconfont icon-{{item.xicon}}"></text>
+                <text>{{item.name}}</text>
+            </view>
+        </view>
+        <!-- 详情公共区域 -->
+        <view class="detail">
+            <view class="detail-top">
+                <view  class="price">
+                    <text>配置选齐后方可加入购物车</text>               
+                </view>
+                <view class="filter" bind:tap="diyFilter">
+                    <text>筛选</text><text class="iconfont icon-shaixuan"></text>
+                </view>
+            </view>
+            <view class="product">
+                <!-- <scroll-view scroll-y style="height: 900rpx; padding-bottom: 50rpx;"> -->
+                    <view class="pro-list" s-for="item in goods.data">
+                        <view class="pro-img">
+                            <image mode="aspectFit" src="{{item.cover}}"></image>
+                        </view>                         
+                        <view class="des">
+                            <text class="des-title">{{item.goods_name}}</text>
+                            <view class="buy">
+                                <text class="sale">￥{{item.price}}</text>
+                                
+                                <text data-id="{{item.id}}" data-price="{{item.price}}" s-if="{{selectedId[goodsCateId] == item.id}}" class="del" bind:tap="cancelConfig">取消加入</text>
+                                <text data-id="{{item.id}}" data-price="{{item.price}}" s-else class="add" bind:tap="addConfig">加入配置</text>
+                                
+                            </view>
+                        </view>
+                    </view>
+                <!-- </scroll-view> -->
+            </view>
+        </view>
+    </view>
+    <view class="cart">
+        <text class="count">合计:{{totalPrice}}</text>
+        <text bind:tap="clearSelectedSets" class="clear-all">清空 ({{selectedNum}})</text>
+        <text bind:tap="addCart" class="add-cart">加入购物车</text>
+    </view>
+
+   
+    
+</view>
+ <!-- 模态框 -->
+    <view class="modal-box" style="display: {{diyFilterActive? 'flex': 'none'}};">
+        <view class="modal">
+            <view s-for="item in goods.attr" class="modal-brand">
+                <text class="title">{{item.title}}</text>
+                <view class="brands">
+                    <text
+                    s-for="list in item.value"
+                    data-type="{{item.type}}" 
+                    data-id="{{list.id}}"
+                    data-aid="{{list.aid}}"
+                    data-current-alias="{{currentAlias}}"
+                    data-unique-alias="{{uniqueAlias}}"
+                    bind:tap="filter"
+                    class="b 
+                    {{(filterObj[currentAlias][uniqueAlias].bid==list.id && item.type=='brand')?'active': ''}}
+                    {{(filterObj[currentAlias][uniqueAlias].level==list.id && item.type=='level')?'active': ''}}
+                    {{filterObj[currentAlias][uniqueAlias].attrids[list.aid]==list.id?'active':''}}
+                    ">{{list.value}}</text>
+                </view>
+            </view>
+            <view class="modal-confirm">
+                <view class="cancel" bind:tap="cancelFilter">取消</view>
+                <view class="confirm" bind:tap="confirmFilter">确认</view>
+            </view>
+        </view>
+    </view>

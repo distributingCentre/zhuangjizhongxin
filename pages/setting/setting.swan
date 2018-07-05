@@ -1,0 +1,21 @@
+<view class="container">
+	<view class="lists">
+		<view data-page="addresslist" class="address" bind:tap="link">	
+			<view>
+				<text class="iconfont icon-dizhi"></text>
+				<text>收获地址</text>
+			</view>
+			<text class="iconfont icon-gengduo"></text>
+		</view>
+		<view data-page="userinfo" class="userinfo" bind:tap="link">
+			<view>
+				<text class="iconfont icon-wode"></text>
+				<text>个人信息</text>
+			</view>
+			<text class="iconfont icon-gengduo"></text>
+		</view>
+	</view>
+	<view bind:tap="logout" class="out">
+		<text>退出登录</text>
+	</view>
+</view>

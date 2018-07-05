@@ -1,0 +1,83 @@
+{
+    "debug": false,
+    "pages": [
+        "pages/index/index",
+        "pages/diy/diy",
+        "pages/host/host",
+        "pages/cart/cart",        
+        "pages/mine/mine",
+        "pages/order/order",
+        "pages/setting/setting",
+        "pages/userinfo/userinfo",
+        "pages/addresslist/addresslist",
+        "pages/addaddress/addaddress",
+        "pages/orderdetail/orderdetail",
+        "pages/payfor/payfor",
+        "pages/store/store",
+        "pages/orderstatus/orderstatus",
+        "pages/login/login",
+        "pages/addshop/addshop",
+        "pages/messages/messages",
+        "pages/ordervalue/ordervalue",
+        "pages/comment/comment",
+        "pages/spot/spot",
+        "pages/newsDetail/newsDetail"
+       
+    ],
+    "window":
+    {
+        "navigationBarBackgroundColor": "#ffffff",
+        "navigationBarTitleText": "装机中心",
+        "navigationBarTextStyle": "black",
+        "backgroundTextStyle": "black",
+        "enablePullDownRefresh": false,
+        "backgroundColor": "#ecebee"
+    },
+    "networkTimeout":
+    {
+        "request": 30000,
+        "connectSocket": 10000,
+        "uploadFile": 10000,
+        "downloadFile": 10000
+    },
+    "tabBar":
+    {
+        "color": "#a2a2a2",
+        "selectedColor": "#fa373d",
+        "borderStyle": "black",
+        "backgroundColor": "#ffffff",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "iconPath": "images/tabbar/home.png",
+                "selectedIconPath": "images/tabbar/home-selected.png",
+                "text": "首页"
+            },
+            {
+                "pagePath": "pages/diy/diy",
+                "iconPath": "images/tabbar/diy.png",
+                "selectedIconPath": "images/tabbar/diy-selected.png",
+                "text": "DIY"
+            },
+            {
+                "pagePath": "pages/spot/spot",
+                "iconPath": "images/tabbar/spot.png",
+                "selectedIconPath": "images/tabbar/spot1.png",
+                "text": "发现"
+            },
+            {
+                "pagePath": "pages/cart/cart",
+                "iconPath": "images/tabbar/cart.png",
+                "selectedIconPath": "images/tabbar/cart-selected.png",
+                "text": "购物车"
+            },
+            {
+                "pagePath": "pages/mine/mine",
+                "iconPath": "images/tabbar/mine.png",
+                "selectedIconPath": "images/tabbar/mine-selected.png",
+                "text": "我的"
+            }
+            
+        ]
+    }
+}

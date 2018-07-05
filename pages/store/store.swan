@@ -1,0 +1,65 @@
+<view class="container">
+	<view class="header">
+		<view data-index="1" bind:tap="changeNav" class="nav {{currentNav==1? 'active': ''}}"><text>配置收藏</text></view>
+		<view data-index="2" bind:tap="changeNav" class="nav {{currentNav==2? 'active': ''}}"><text>店铺收藏</text></view>
+	</view>
+	<view class="content">
+		<view style="display: {{currentNav==1?'block':'none'}};" class="setting">
+			<view s-for="item in settingData" class="item">
+				<view class="top" data-id={{item.id}} bind:tap="toggle">
+					<view class="title">
+						<text>{{item.title}}</text>
+					</view>
+					<text class="iconfont icon-you {{activeId == item.id?'active':''}}"></text>
+				</view>
+				<view class="detail {{activeId == item.id?'active':''}}">
+					<view s-for="list in item.settings" class='li'>
+						<view class="cat">{{list.cat}}：</view>
+						<view class="cat-desc">{{list.title}}</view>
+					</view>
+				</view>
+				<view class="handle">
+					<text data-did="{{item.did}}" bind:tap="goBuy" class="h-btn">购买</text>
+					<text data-id="{{item.id}}" bind:tap="delSetting" class="h-btn">删除</text>
+				</view>
+			</view>
+		</view>
+		<view style="display: {{currentNav==2?'block':'none'}};" class="shop-store">
+			<view s-for="shop in shopData" class="shop">
+				<view class="shop-top">
+					<view class="shop-info">
+						<view class="img">
+							<image src="{{shop.shop_img}}"></image>
+						</view>
+						<text class="shopname">{{shop.nickname}}</text>
+					</view>
+					<text data-shop-id="{{shop.collect_id}}" bind:tap="linkToShop" class="shop-top-btn">进店</text>
+				</view>
+				<view class="shop-goods">
+					<view s-for="item in shop.recommend" class="goods-list">
+						<view class="goods-img">
+							<image src="{{item.cover}}"></image>
+						</view>
+						<view class="goods-price">
+							<text>{{item.price}}</text>
+						</view>
+					</view>
+				</view>
+				<view class="tags">
+					<text class="tag">销量{{shop.sales_volume}}</text>
+					<text class="tag">好评率{{shop.praise_rate}}%</text>
+					<text class="tag">收藏人数{{shop.collection_volume}}</text>
+				</view>
+				<view class="shop-handle">
+					<text data-id={{shop.id}} bind:tap="delShop" class="del-shop">删除</text>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view bind:tap="settingAgain" style="display: {{currentNav==1?'block':'none'}};" class="btn">
+		<text>再去配置一个</text>
+	</view>
+	<view bind:tap="goShop" style="display: {{currentNav==2?'block':'none'}};" class="btn">
+		<text>去好店看看</text>
+	</view>
+</view>

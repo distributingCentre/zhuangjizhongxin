@@ -1,0 +1,246 @@
+@import '../../public/css/iconfont.css';
+@main-color: #c7bfbf;
+@hightlight-color: #fa373d;
+@border-color: #f4f4f4;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+body {
+    position: relative;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    &>.content {
+        overflow: auto;
+    }
+    .content {
+        flex: 1;
+        // overflow: scroll;
+        .wraper {
+            padding: 40rpx;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .no-address {
+                width: 100%;
+                text-align: center;
+                color: @main-color;
+                .tap {
+                    display: inline-block;
+                    margin-right: 20rpx;
+                }
+            }
+            .address-box {
+                .personal-info {
+                    font-size: 40rpx;
+                    font-weight: 900;
+                    .username {
+                        display: inline-block;
+                        margin-right: 93rpx;
+                    }
+                }
+                .address {
+                    font-size: 24rpx;
+                    margin-top: 23rpx;
+                }
+            }
+            .iconfont {
+                color: @main-color;
+            }
+        }
+
+        .order-box {
+            padding: 40rpx;
+            display: flex;
+            .order-list {
+                .shopname {
+                    font-size: 30rpx;
+                    font-weight: 900;
+                }
+                .order-detail {
+                    margin: 40rpx 0 0;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    .img {
+                        width: 172rpx;
+                        height: 172rpx;
+                        image {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                    .desc {
+                        flex: 1;
+                        font-size: 26rpx;
+                        padding-left: 20rpx;
+                        .goodsname {
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 2;
+                        }
+                        .price-content {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            margin-top: 40rpx;
+                            font-size: 24rpx;
+                            color: @hightlight-color;
+                            .price {
+                                font-size: 40rpx;
+                                font-weight: 900;
+                            }
+                            .num {
+                                color: #000000;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .delivery {
+            padding: 40rpx;
+            border-top: 1rpx solid @border-color;
+            .title {
+                font-size: 26rpx;
+                color: @main-color;
+            }
+            .content {
+                font-size: 30rpx;
+                margin-top: 40rpx;
+                font-weight: 900;
+            }
+        }
+        .timer {
+            padding: 40rpx;
+            border-top: 1rpx solid @border-color;
+            .title {
+                font-size: 26rpx;
+                color: @main-color;
+            }
+            .content {
+                font-size: 30rpx;
+                margin-top: 40rpx;
+                font-weight: 900;
+            }
+        }
+        .summary {
+            padding: 40rpx;
+            border-top: 1rpx solid @border-color;
+            .item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 24rpx;
+                font-weight: 900;
+                margin-bottom: 40rpx;
+                .youhui {
+                    color: rgb(55, 146, 250);
+                }
+                .yunfei,
+                .fuwufei {
+                    color: @hightlight-color;
+                }
+            }
+        }
+    }
+    .commit-box {
+        width: 100%;
+        height: 98rpx;
+        display: flex;
+        justify-content: space-between;
+        box-shadow: 0px -2px 5px @main-color;
+        .total-price,
+        .btn {
+            height: 100%;
+            line-height: 98rpx;
+            padding: 0 45rpx;
+        }
+        .total-price {
+            color: @hightlight-color;
+            font-size: 24rpx;
+            .count {
+                font-size: 36rpx;
+            }
+        }
+        .btn {
+            font-size: 36rpx;
+            color: #ffffff;
+            font-weight: 900;
+            background-color: @hightlight-color;
+        }
+    }
+}
+
+.select-address {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #ffffff;
+    top: 0;
+    left: 750rpx;
+    display: none;
+    transition: position 1s;
+    .top {
+        width: 100%;
+        height: 98rpx;
+        line-height: 98rpx;
+        padding: 0 40rpx;
+        border-bottom: 1rpx solid @border-color;
+    }
+    .address-lists {
+        .list {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40rpx;
+            border-bottom: 1rpx solid @border-color;
+            .left {
+                .user-info {
+                    font-size: 40rpx;
+                    font-weight: 900;
+                    .username {
+                        marign-right: 40rpx;
+                    }
+                }
+                .address {
+                    font-size: 24rpx;
+                    margin-top: 40rpx;
+                    color: @main-color;
+                }
+            }
+        }
+    }
+    .btn {
+        height: 98rpx;
+        width: 100%;
+        line-height: 98rpx;
+        text-align: center;
+        font-size: 36rpx;
+        color: #ffffff;
+        font-weight: 900;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background-color: @hightlight-color;
+    }
+}
+.select-address.active {
+    left: 0;
+    display: block;
+}

@@ -1,0 +1,36 @@
+<veiw class="container">
+    <view data-info="用户名" data-edit-target="nickname" class="nickname">
+        <text>昵称</text>
+        <view class="r">
+            <text>{{userInfo.nickname}}</text>
+            <text class="iconfont icon-gengduo"></text>
+        </view>
+    </view>
+    <view data-info="手机号码" data-edit-target="mobile" class="phone" bind:tap="edit">
+        <text>手机</text>
+        <view class="r">
+            <text>{{userInfo.mobile}}</text>
+            <text class="iconfont icon-gengduo"></text>
+        </view>
+    </view>
+    <view data-info="邮箱" data-edit-target="email" class="email" bind:tap="edit">
+        <text>邮箱</text>
+        <view class="r">
+            <text>{{userInfo.email}}</text>
+            <text class="iconfont icon-gengduo"></text>
+        </view>
+    </view>
+</veiw>
+<!--  -->
+<view id="editmodal" style="display: {{editActive?'block':'none'}}">
+    <form class="content">
+    	<view class="title"><text>请输入{{title}}</text></view>
+        <view class="input-area">
+            <input bindinput="editTing" autofocus="autofocus" value="{{userInfo[editTarget]|| ''}}" />
+        </view>
+        <view class="btn">
+            <text class="cancel" bind:tap="cancelEdit">取消</text>
+            <text class="confirm" bind:tap="confirm">确定</text>
+        </view>
+    </form>
+</view>

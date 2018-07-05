@@ -1,0 +1,166 @@
+<view class="container">
+	<view class="content">
+		<view class="status">
+			<view class="statu">
+				<view class="desc">
+					<view class="current-status">
+						<text s-if="{{order.order_status == 0 && order.pay_status == 0}}">待付款</text>
+						<text s-elif="{{order.order_status == 0 && order.pay_status == 1 && order.shipping_status == 0}}">待发货</text>
+						<text s-elif="{{order.order_status == 0 && order.pay_status == 1 && order.shipping_status == 1}}">待收货</text>
+						<text s-elif="{{order.order_status == 1}}">已取消<text class="cancel-reason">{{order.cancel_reason}}</text></text>
+						<text s-elif="{{order.order_status == 2}}">已完成</text>
+					</view>
+					<view class="order-number"><text>订单号： {{order.order_sn}}</text></view>
+				</view>
+				<view class="copy">
+					<text>复制</text>
+				</view>
+			</view>
+			<view class="user-info">
+				<view class="box">
+					<view class="desc">
+						<text class="username">{{order.order_shopping.receiver_name}}</text>
+						<text class="mobile">{{order.order_shopping.receiver_phone}}</text>
+					</view>
+					<view class="address-box">
+						<text class="address">{{order.order_shopping.receiver_address}}</text>
+					</view>
+				</view>
+				<!-- <view class="tag">
+					<text>公司</text>
+				</view> -->
+			</view>
+		</view>
+		<view class="shops">
+			<view class="shop">
+				<view class="shopname">
+					<text>金{{order.shop_name}}</text>
+					<text class="iconfont icon-you"></text>
+				</view>
+				<view class="goods">
+					<view s-for="good in order.goods_info" class="list">
+						<view class="img">
+							<image mode="aspectFit" src="{{good.goods_img}}"></image>
+						</view>
+						<view class="detail">
+							<view class="desc">
+								<text>{{good.goods_name}}</text>
+							</view>
+							<view class="price">
+								<text>¥{{good.goods_price}}</text>
+								<text class="goods-num">X{{good.goods_num}}</text>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="details">
+			<view class="item">
+				<view class="p payment">
+					<text>支付方式: 在线支付</text>
+				</view>
+				<view class="p time">
+					<text>下单时间: {{order.create_time}}</text>
+				</view>
+			</view>
+			<view class="item">
+				<view class="p goods-num">
+					<text>商品数量： {{order.sum}}件</text>
+				</view>
+				<view class="p total-price">
+					<text>商品总额： ¥ {{order.goods_price}}</text>
+				</view>
+				<view class="p service-price">
+					<text>服务费用： ¥ {{order.service_amount}}</text>
+				</view>
+				<view class="p post-price">
+					<text>运输费用： ¥ {{order.shipping_price}}</text>
+				</view>
+			</view>
+			<view class="amount">
+				<text>应付总额： </text>
+				<text class="total">¥ {{order.order_amount}}</text>
+			</view>
+		</view>
+	</view>	
+</view>
+<!-- 待付款 -->
+<view class="handle" s-if="{{order.order_status == 0 && order.pay_status == 0}}">
+	<view bind:tap="cancelOrderNoPay" class="item left">
+		<text>取消订单</text>
+	</view>
+	<view bind:tap="goPay" class="item right">
+		<text>立即支付</text>
+	</view>
+</view>
+<!-- 待发货 -->
+<view class="handle" s-elif="{{order.order_status == 0 && order.pay_status == 1 && order.shipping_status == 0}}">
+	<view bind:tap="cancelOrder" class="cancel left">
+		<text>取消订单</text>
+	</view>
+</view>
+<!-- 待收货 -->
+<view class="handle" s-elif="{{order.order_status == 0 && order.pay_status == 1 && order.shipping_status == 1}}">
+	<view bind:tap="buyAgain" class="item left">
+		<text>再下一单</text>
+	</view>
+	<view bind:tap="received" class="item right">
+		<text>确认收货</text>
+	</view>
+</view>
+<!-- 已取消 -->
+<view class="handle" s-elif="{{order.order_status == 1}}">
+	<view bind:tap="delOrder" class="item left">
+		<text>删除订单</text>
+	</view>
+	<view bind:tap="buyAgain" class="item right">
+		<text>再次购买</text>
+	</view>
+</view>
+<!-- 已完成 -->
+<view class="handle" s-elif="{{order.order_status == 2}}">
+	<view bind:tap="buyAgain" class="item left">
+		<text>再下一单</text>
+	</view>
+	<view data-id={{order.id}} bind:tap="GoValue" class="item right">
+		<text>评价订单</text>
+	</view>
+</view>
+
+<!-- 未支付状态取消订单模态框 -->
+<view style="display: {{isCancel?'block':'none'}}" class="nopay-modal">
+	<view class="box">
+		<view class="title">
+			<text>取消订单</text>
+			<text bind:tap="noHandle">X</text>
+		</view>
+		<view class="cancel-content">
+			<view style="display: {{isPay?'block':'none'}}" class="username">
+				<view><text>真实姓名：</text></view>
+				<view class="ali">
+					<input class="input" bindinput="drawbackName" type="text" value="{{drawbackName}}" placeholder="请填写真实姓名" />
+				</view>				
+			</view>
+			<view style="display: {{isPay?'block':'none'}}" class="alinumber">
+				<view><text>支付宝账号：</text></view>
+				<view class="ali">
+					<input class="input" bindinput="drawbackAcount" type="text" value="{{drawbackAcount}}" placeholder="货款将会退回此账户，请如实填写" />
+				</view>
+				
+			</view>
+			<view class="t">
+				<text>取消原因:</text>
+			</view>
+			<picker class="picker-box" mode="selector" range="{{reasonData}}" value="0" title="取消订单" bindchange="bindReasonChange">
+				<view class="picker">
+					{{reasonValue}}
+				</view>
+			</picker>
+		</view>
+		<view bind:tap="confirmCandelOrder" class="cancel-btn">
+			<text>提交</text>
+		</view>
+	</view>
+	
+</view>

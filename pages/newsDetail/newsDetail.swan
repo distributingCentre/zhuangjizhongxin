@@ -1,0 +1,8 @@
+<view s-for="item in content">
+	<view style="font-size: 24rpx; margin-bottom: 20rpx" s-if="item.length>1">
+		<text>{{item}}</text>
+	</view>
+	<view s-else>
+		<image src="{{item[0]}}"></image>
+	</view>
+</view>

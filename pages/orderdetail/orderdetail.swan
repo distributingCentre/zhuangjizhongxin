@@ -1,0 +1,117 @@
+<view class=container>
+	<view class="content">
+		<view class="wraper"  s-if="default">
+			<view class="address-box">
+				<view class="personal-info">
+					<text class='username'>{{default.consignee}}</text>
+					<text class="phone">{{default.mobile}}</text>
+				</view>
+				<view class="address">
+					<text>{{default.detailed_address}}</text>
+				</view>
+			</view>
+			<text data-id = {{default.id}} bind:tap="handleAddress" class="iconfont icon-you"></text>
+		</view>
+
+		<view class="wraper" s-elif="addressLists">
+			<view class="address-box">
+				<view class="personal-info">
+					<text class='username'>{{addressLists[0].consignee}}</text>
+					<text class="phone">{{addressLists[0].mobile}}</text>
+				</view>
+				<view class="address">
+					<text>{{addressLists[0].detailed_address}}</text>
+				</view>
+			</view>
+			<text data-id="addressList[0].id" bind:tap="handleAddress" class="iconfont icon-you"></text>
+		</view>
+
+		<view bind:tap="addaddress" class="wraper" s-else>
+			<view class="no-address">
+				<text class="tap">没有地址,点击前去添加地址<text class="iconfont icon-you"></text></text>
+			</view>
+			
+		</view>
+
+		<view class="order-box">
+			<view s-for="item in lists" class="order-list">
+				<view class="shopname">
+					<text>{{item.shop_name}}</text>
+				</view>
+				<view s-for="list in item.list" class="order-detail">
+					<view class="img">
+						<image src="{{list.cover}}"></image>
+					</view>
+					<view class="desc">
+						<view class="goodsname">
+							<text>{{list.goods_name}}</text>
+						</view>
+						<view class="price-content">
+							<view>¥ <text class="price">{{list.price}}</text></view>
+							<text class="num">X{{list.goods_num}}</text>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+
+		<view class="delivery">
+			<view class="title"><text>配送方式</text></view>
+			<view class="content"><text>快递运输</text></view>
+		</view>
+			
+		<view class="timer">
+			<view class="title"><text>配送时间</text></view>
+			<view class="content"><text>工作日、双休日与节假日均可配送</text></view>
+		</view>
+
+		<view class="summary">
+			<view class="item">
+				<text class="label">优惠</text>
+				<text class="youhui">¥ {{orderList.data.discount_amount}}</text>
+			</view>
+			<view class="item">
+				<text class="label">运费</text>
+				<text class="yunfei">¥ {{orderList.data.postage}}</text>
+			</view>
+			<view class="item">
+				<text class="label">服务费</text>
+				<text class="fuwufei">¥ {{orderList.data.service_amount}}</text>
+			</view>
+		</view>
+	</view>
+	<view class="commit-box">
+		<view class="total-price">
+			¥ <text class="count">{{orderList.data.total_amount}}</text>
+		</view>
+		<view bind:tap="submit" class='btn'>
+			<text>提交订单</text>
+		</view>
+	</view>
+</view>
+<view style="display: {{isSwitchAddress?'block': 'none'}}" class="select-address {{isSwitchAddress?'active':''}}">
+	<view class="top">
+		<text>选择地址</text>
+	</view>
+	<view class="address-lists">
+		<view class="list" s-for="list in addressLists">
+			<view class="left">
+				<view class="user-info">
+					<text class="username">{{list.consignee}}</text>
+					<text class="phone">{{list.mobile}}</text>
+				</view>
+				<view class="address">
+					<text>{{list.detailed_address}}</text>
+				</view>
+			</view>
+			<view class='right'>
+				<checkbox-group data-id={{list.id}} bind:change="checkboxChange">
+					<checkbox value="{{list.id}}" color="red" checked="{{currentAddressId==list.id?true:false}}"></checkbox>
+				</checkbox-group>
+			</view>
+		</view>
+	</view>
+	<view bind:tap="confirm" class="btn">
+		<text>确定</text>
+	</view>
+</view>

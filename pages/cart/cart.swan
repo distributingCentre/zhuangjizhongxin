@@ -1,0 +1,82 @@
+<view class="container">
+    <view class="lists-box">
+        <view s-for="item in shops" class="lists-item">
+            <view class="shop">
+                <checkbox-group data-shop-id = {{item.shop_id}} bind:change="selectShopChange">
+                    <checkbox  class="scale" value="{{item.shop_id}}" color="red" checked="{{isSelectShop[item.shop_id]?true: false}}"></checkbox>
+                </checkbox-group>
+                <text>{{item.shop_name}}</text>
+                <text style="font-size: 24rpx; color: #c7bfbf" class="iconfont icon-you"></text>
+            </view>
+            <view s-for="list in item.list" class="lists">
+                <view class="list">
+                    <view class="isbuy">
+                        <checkbox-group 
+                        data-shop-id={{item.shop_id}}
+                        data-cart-id={{list.cart_id}}
+                        data-goods-id={{list.goods_id}} 
+                        data-goods-price={{list.price}}
+                        data-goods-num = {{list.goods_num}}
+                        data-single-ids= {{list.single_ids}}
+                        bind:change="selectGoodsChange">
+                            <checkbox class="scale" value="{{list.price}}" color="red" checked="{{isSelectGoods[item.shop_id][list.cart_id]?true : false}}"></checkbox>
+                        </checkbox-group>
+                    </view>
+                    <view class="img">
+                        <image mode="aspectFit" src="{{list.cover}}"></image>
+                    </view>
+                    <view class="details">
+                        <view class="desc">
+                            <text class="goods-name">{{list.goods_name}}</text>
+                            <text
+                            data-shop-id="{{item.shop_id}}" 
+                            data-cart-id="{{list.cart_id}}" 
+                            data-isSelect="{{isSelectGoods[item.shop_id][list.cart_id]}}" 
+                            data-price="{{list.price}}"
+                            data-goods-num="{{list.goods_num}}" 
+                            bind:tap="delCart" 
+                            class='iconfont icon-shanchu'>
+                        </view>
+                        <view class="price">
+                            <view>￥
+                                <text class="count">{{list.price*list.goods_num}}</text>
+                            </view>
+                            <view class="handle">
+                                <text
+                                data-isSelect="{{isSelectGoods[item.shop_id][list.cart_id]}}" 
+                                data-price="{{list.price}}" 
+                                data-shop-id="{{item.shop_id}}" 
+                                data-cart-id="{{list.cart_id}}" 
+                                class="iconfont icon-jian" 
+                                bind:tap="reduceNum"></text>
+                                <text class="num">{{list.goods_num}}</text>
+                                <text 
+                                data-isSelect="{{isSelectGoods[item.shop_id][list.cart_id]}}"
+                                data-price="{{list.price}}" 
+                                data-shop-id="{{item.shop_id}}" 
+                                data-cart-id="{{list.cart_id}}" 
+                                class="iconfont icon-jia" 
+                                bind:tap="plusNum"></text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="nomore" style="display: {{shops.length>0?'none':'block'}};"><text>您的购物车空空如也！</text></view>
+</view>
+<view id="cart">
+    <view class="checkbox">
+        <checkbox-group bind:change="selectAllChange">
+            <checkbox class="scale" color="red" checked="{{isSelectAll}}"></checkbox>
+            <text>全选</text>
+        </checkbox-group>
+    </view>
+    <view class="amount">
+        <text>合计：{{totalPrice}}</text>
+    </view>
+    <view class="js">
+        <text bind:tap="linkTo" class="js-btn">去结算({{selectNum}})</text>
+    </view>
+</view>

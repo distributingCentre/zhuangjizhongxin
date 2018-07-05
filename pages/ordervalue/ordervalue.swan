@@ -1,0 +1,28 @@
+<view class="container">
+	<view class="order">
+		<view class="shopname">
+			<text>{{order.order.shop_name}}</text>
+		</view>
+		<view s-for="list in order.list" class="order-detail">
+			<view class="goods-cover">
+				<image src="{{list.goods_img}}"></image>
+			</view>
+			<view class="desc">
+				<view class="goods-name">
+					<text>{{list.goods_name}}</text>
+				</view>
+				<view class="bottom">
+					<view class="price">{{list.goods_price}}</view>
+					<view s-if="{{list.is_comment}}" class="btn-valued">
+						<text>完成评价</text>
+					</view>
+					<view data-id={{list.id}} bind:tap="goValue" s-else class="btn">
+						<text>立即评价</text>
+					</view>
+					
+				</view>
+				
+			</view>
+		</view>
+	</view>
+</view>

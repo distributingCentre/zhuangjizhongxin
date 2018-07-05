@@ -1,0 +1,139 @@
+@import '../../public/css/iconfont.css';
+@main-color: #c7bfbf;
+@hightlight-color: #fa373d;
+@border-color: #f4f4f4;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    width: 100%;
+    background-color: @main-color;
+    overflow: hidden;
+    padding-top: 98rpx;
+    .header {
+    	position: fixed;
+    	top: 0;
+    	left: 0;
+    	background-color: #ffffff;
+        width: 100%;
+        height: 98rpx;
+        line-height: 98rpx;
+        display: flex;
+        justify-content: space-around;
+        font-size: 30rpx;
+        font-weight: 900;
+        .nav {
+            flex: 1;
+            text-align: center;
+        }
+        .nav.active {
+            border-bottom: 1rpx solid @hightlight-color;
+            color: @hightlight-color;
+        }
+    }
+    .orders {
+    	background-color: @main-color;
+        width: 100%;
+        .order {
+        	background-color: #ffffff;
+        	margin-top: 15rpx;
+            .title {
+                display: flex;
+                padding: 0 40rpx;
+                align-items: center;
+                justify-content: space-between;
+				border-bottom: 1rpx solid @border-color;
+                height: 72rpx;
+                line-height: 72rpx;
+                font-size: 26rpx;
+                font-weight: 900;
+                .shopname {}
+                .status {
+                    color: @hightlight-color;
+                }
+            }
+            .order-lists-many {
+            	padding: 10rpx 40rpx;
+                display: flex;
+                overflow: scroll;
+                .img-box {
+                	flex: 0 0 160rpx;
+                    width: 160rpx;
+                    height: 160rpx;
+                    image {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+            .order-lists {
+                padding: 10rpx 40rpx;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .img-box {
+                    width: 160rpx;
+                    height: 160rpx;
+                    image {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                .order-alt {
+                	flex: 1;
+                    padding-left: 20rpx;
+                    font-size: 30rpx;
+                    font-weight: 900;
+                    overflow: hidden;
+
+                    text-overflow: ellipsis;
+
+                    display: -webkit-box;
+
+                    -webkit-box-orient: vertical;
+
+                    -webkit-line-clamp: 2;
+                }
+            }
+            .order-detail {
+            	border-top: 1rpx solid @border-color;
+            	padding: 0 40rpx;
+            	height: 72rpx;
+            	line-height: 72rpx;
+            	display: flex;
+            	justify-content: space-between;
+            	align-items: center;
+            	font-size: 26rpx;
+            	.amount {
+            		color: @hightlight-color;
+            	}
+            	.go-pay {
+            		height: 48rpx;
+            		width: 132rpx;
+            		line-height: 48rpx;
+            		border-radius: 24rpx;
+            		border: 1rpx solid @hightlight-color;
+            		color: @hightlight-color;
+            		text-align: center;
+            	}
+            }
+        }
+        .no-more {
+        	background-color: #ffffff;
+        	font-size: 24rpx;
+        	color: @main-color;
+        	text-align: center;
+        	width: 100%;
+        	padding: 20rpx 0;
+        }
+    }
+}

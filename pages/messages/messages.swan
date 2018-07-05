@@ -1,0 +1,21 @@
+<view class="container">
+	<view class="header">
+		<view bind:tap="changeNav" data-index="1" class="nav-item {{currentIndex==1?'active':''}}"><text>系统消息</text></view>
+		<view bind:tap="changeNav" data-index="2" class="nav-item {{currentIndex==2?'active':''}}"><text>物流消息</text></view>
+		<view bind:tap="changeNav" data-index="3" class="nav-item {{currentIndex==3?'active':''}}"><text>订单消息</text></view>
+	</view>
+	<view class="content">
+		<view class="item" s-for="msg in messages">
+			<view class="top">
+				<text class="title">{{msg.title}}</text>
+				<text class="timer">{{msg.create_time}}</text>
+			</view>
+			<view class="abstract">
+				{{msg.content}}
+			</view>
+		</view>
+	</view>
+	<view class="no-more">
+		<text>---没有更多了---</text>
+	</view>
+</view>

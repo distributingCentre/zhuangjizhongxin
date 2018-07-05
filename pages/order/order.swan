@@ -1,0 +1,93 @@
+<view class="container">
+    <view class="header">
+        <view data-type="1" bind:tap="toggleNav" class="nav {{navIndex==1?'active': ''}}">
+            <text>全部</text>
+        </view>
+        <view data-type="2" bind:tap="toggleNav" class="nav {{navIndex==2?'active': ''}}">
+            <text>待付款</text>
+        </view>
+        <view data-type="3" bind:tap="toggleNav" class="nav {{navIndex==3?'active': ''}}">
+            <text>待收货</text>
+        </view>
+        <view data-type="4" bind:tap="toggleNav" class="nav {{navIndex==4?'active': ''}}">
+            <text>待评价</text>
+        </view>
+    </view>
+
+    <!-- 订单列表 -->
+        <view class="orders">
+        	<view bind:tap="linkToOrderDetail" class="order" s-for="shop in shops" data-order-sn={{shop.order_sn}}>
+        		<view class="title">
+        			<view class="shopname">
+        				<text>{{shop.shop_name}}</text><text style="display: inline-block; margin-left: 15rpx; font-size: 26rpx; color:#c7bfbf" class="iconfont icon-you"></text>
+        			</view>
+
+
+        			<view class="status" s-if="shop.order_status==0&&shop.pay_status==0">
+                        等待付款
+                    </view>
+                    <view class="status" s-elif="shop.order_status==0&&shop.pay_status==1&&shop.shipping_status==0">
+                        等待发货
+                    </view>
+                    <view class="status" s-elif="shop.order_status==0&&shop.pay_status==1&&shop.shipping_status==1">
+                        等待收货
+                    </view>
+                    <view class="status" s-elif="shop.order_status==1">
+                        已取消
+                    </view>
+                    <view class="status" s-elif="shop.order_status==2">
+                        已完成
+                    </view>
+                    <view class="status" s-else>
+                        hehe
+                    </view>
+
+        		</view>
+        		<view class="order-lists" s-if="shop.goods_info.length == 1">
+        			<view class="img-box"><image mode="aspectFit" src="{{shop.goods_info[0].goods_img}}"></image></view>
+        			<view class="order-alt">
+        				<text>{{shop.goods_info[0].goods_name}}</text>
+        			</view>
+        		</view>
+                <view class="order-lists-many" s-else>
+                    <view class="img-box" s-for="list in shop.goods_info">
+                        <image mode="aspectFit" src="{{list.goods_img}}"></image>
+                    </view>
+                </view>
+        		<view class="order-detail">
+        			<view class="describe">
+        				<view>
+                            <text>共{{shop.sum}}件商品 </text>
+                            <text class="need-pay">需支付：</text>
+                            <text class="amount">¥{{shop.order_amount}}</text></view>
+        			</view>
+        			<view class="go-pay">
+                        <text s-if="shop.order_status==0&&shop.pay_status==0">
+                            去付款
+                        </text>
+
+                        <!-- 待发货状态下取消订单 -->
+                        <text  s-if="shop.order_status==0&&shop.pay_status==1&&shop.shipping_status==0">
+                            取消订单
+                        </text>
+                        <!-- 确认收货 -->
+                        <text  s-elif="shop.order_status==0&&shop.pay_status==1&&shop.shipping_status==1">
+                            确认收货
+                        </text>
+                        <text s-elif="shop.order_status==1">
+                            再次购买
+                        </text>
+                        <text s-elif="shop.order_status==2&&shop.is_comment==0">
+                            去评价
+                        </text>
+                        <text s-elif="shop.order_status==2&&shop.is_comment==1">
+                            再次购买
+                        </text>
+                    </view>
+        		</view>
+        	</view>
+            <view style="display: {{isMore?'none': 'block'}}" class='no-more'>
+                <text>---没有更多了---</text>
+            </view>
+        </view>
+</view>

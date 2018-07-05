@@ -1,0 +1,6 @@
+
+<image class='img' src='{{avatarUrl}}'></image>
+<view class='login'>登录获得完整体验</view>
+<!-- <view bind:tap="click">登录</view> -->
+<button class='but' type="primary" size="default"   bind:tap="click" >一键登录</button>
+<!-- <button open-type="getUserInfo" bindgetuserinfo="bindgetuserinfo">ss</button> -->

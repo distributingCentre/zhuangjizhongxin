@@ -1,0 +1,126 @@
+@import '../../public/css/iconfont.css';
+@main-color: #c7bfbf;
+@hightlight-color: #fa373d;
+@border-color: #f4f4f4;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.header {
+	width: 750rpx;
+	height: 188rpx;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.user {
+	margin-left: 40rpx;
+	display: flex;
+	align-items: center;
+	font-size: 36rpx;
+}
+.user image {
+	width: 120rpx;
+	height: 120rpx;
+	border: 1px solid @border-color;
+	border-radius: 50%;
+	margin-right: 24rpx;
+}
+.setting {
+	margin-right: 91rpx;
+	color: #c7bfbf;
+}
+.setting .iconfont {
+	font-size: 24px;
+}
+.my-order {
+	width: 750rpx;
+	padding: 30rpx 0;
+	border-top: 1rpx solid #c7bfbf;
+}
+.my-order-title {
+	height: 72rpx;
+	line-height: 72rpx;
+	font-weight: bold;
+	
+	padding-left: 40rpx;
+}
+.my-order-detail {
+	// height: 188rpx;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.my-order-detail .iconfont {
+	color: red;
+	font-size: 40px;
+}
+.w-pay, .w-receive, .all-orders {
+	flex: 1;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-direction: column;
+	font-size: 22rpx;
+}
+
+.my-store , .my-message{
+	padding: 20rpx 40rpx 0;
+	.title {
+		font-size: 32rpx;
+		font-weight: 900;
+	}
+	.lists {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		padding: 30rpx 0;
+		.item {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 20rpx 40rpx;
+			.num {
+				font-size: 36rpx;
+			}
+			.list {
+				font-size: 22rpx;
+				color: @main-color;
+				padding-top: 10rpx;
+			}
+		}
+	}
+}
+.seller-center {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 30rpx;
+	.title {
+		font-size: 32rpx;
+		font-weight: 900;
+	}
+	.contents {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		.tips, .btn {
+			text-align: center;
+		}
+		.tips {
+			font-size: 24rpx;
+			color: @main-color;
+			margin-bottom: 20rpx
+		}
+		.btn {
+			width: 500rpx;
+			height: 72rpx;
+			line-height: 72rpx;
+			color: @hightlight-color;
+			border-radius: 36rpx;
+			border: 1rpx solid @hightlight-color;
+		}
+	}
+}

@@ -1,0 +1,8 @@
+{
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "收获地址",
+    "navigationBarTextStyle": "black",
+    "backgroundTextStyle": "black",
+    "enablePullDownRefresh": false,
+    "backgroundColor": "#ecebee"
+}

@@ -1,0 +1,57 @@
+<view class="container">
+    <view class="content">
+        <view class="item user">
+            <view class="title">
+                <text>收货人</text>
+            </view>
+            <view>
+                <input bindinput="changeUserName" value="{{addressData?addressData.consignee: ''}}" placeholder="请输入收货人姓名" />
+            </view>
+        </view>
+        <view class="item phonenumber">
+            <view class="title">
+                <text>手机号码</text>
+            </view>
+            <view>
+                <input bindinput="changeMobile" value="{{addressData?addressData.mobile: ''}}" placeholder="请输入手机号" />
+            </view>
+        </view>
+        <view class="item region">
+            <picker bindchange="regionChange" class="region-box" mode="region">
+                <view>
+                    <view class="title">
+                        <text>所在地区</text>
+                    </view>
+                    <view class="area">
+                        <view>
+                            <text>{{regionData[0]}} {{regionData[1]}} {{regionData[2]}}</text>
+                        </view>
+                    </view>
+                </view>
+                <view>
+                	<text class="iconfont icon-xianqia"></text>
+                </view>
+            </picker>
+        </view>
+        <view class="item address">
+            <view class="title">
+                <text>详细地址</text>
+            </view>
+            <view>
+                <input bindinput="changeAddress" value="{{addressData?addressData.address: ''}}" placeholder="请输入收详细地址" />
+            </view>
+        </view>
+        <view class="item tag">
+            <view class="title">
+                <text>地址标签</text>
+            </view>
+            <view class="tag-bar">
+                <text data-tap="公司" bind:tap="changeTag" class="t {{addressData.title == '公司'? 'active' : ''}}">公司</text>
+                <text data-tap="家" bind:tap="changeTag" class="t {{addressData.title == '家'? 'active' : ''}}">家</text>
+            </view>
+        </view>
+    </view>
+    <view bind:tap="submit" class="btn">
+        <text>保存</text>
+    </view>
+</view>

@@ -1,0 +1,22 @@
+.login {
+    margin-top: 350rpx;
+    margin-bottom: 20rpx;
+    font-size: 24rpx;
+    text-align: center;
+    width: 100%;
+    color: #a9a9a9;
+}
+
+.img {
+    height: 130rpx;
+    width: 130rpx;
+    display: flex;
+    margin-left: 42%;
+    margin-top: 150rpx;
+    border-radius: 130rpx
+}
+
+.but {
+    width: 500rpx;
+    margin-top: 30rpx
+}

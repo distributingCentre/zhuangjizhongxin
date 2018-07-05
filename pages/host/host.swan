@@ -1,0 +1,85 @@
+<view class="container">
+	<view class="header">
+		<view class="title">
+			<view class="avatar">
+				<image src="{{shop.shop_img}}"></image>
+			</view>			
+			<view class="shop-name">
+				<text>{{shop.shop_name}}</text>
+			</view>
+		</view>
+	</view>
+	<view class="filter">
+		<view class="valume" bind:tap="sortByValume">
+			<view>
+				<text>销量</text>
+			</view>
+			<view class="sort-by-valume">
+				<view class="asc {{paramers.type==3?'active':''}}"></view>
+				<view class="desc {{paramers.type==4?'active':''}}"></view>
+			</view>
+		</view>
+		<view class="price" bind:tap="sortByPrice">
+			<view>
+				<text>价格</text>
+			</view>
+			<view class="sort-by-price">
+				<view class="asc {{paramers.type==1?'active':''}}"></view>
+				<view class="desc {{paramers.type==2?'active':''}}"></view>
+			</view>
+			
+		</view>
+		<view class="">
+			<text bind:tap="sortByCat">分类</text>
+		</view>
+	</view>
+	<view class="lists">
+		<view bind:tap="linkToDiy" data-id={{item.id}} data-price={{item.price}} s-for="item in goodsList" class="list">
+			<view class="list-pic">
+				<image mode="aspectFit" src="{{item.cover}}"></image>
+			</view>
+			<view class="desc">
+				<text>{{item.goods_name}}</text>
+			</view>
+			<view class="price">
+				<text>￥{{item.price}}</text>
+			</view>
+		</view>
+		<view class="nomore" style="display: {{isMore?'none':'block';}}">
+			<text>没有更多数据了</text>
+		</view>
+	</view>
+</view>
+<view id="cat" style="display: {{catIsActive?'block': ''}}">
+	<view class="content">
+		<view class="cat">
+			<view class="title">
+				<text>分类</text>
+			</view>
+			<view class="cat-detail">
+				<text data-cid="0" class="c {{paramers.cid==0?'active':''}}"  bind:tap="cidSelected">全部</text>
+				<text 
+				s-for="item in goodsCate" 
+				data-cid="{{item.cid}}" 
+				class="c {{paramers.cid==item.cid?'active':''}}"
+				bind:tap="cidSelected">{{item.name}}</text>
+			</view>
+		</view>
+		<view class="brand">
+			<view class="title">
+				<text>品牌</text>
+			</view>
+			<view class="brand-detail">
+				<text class="b {{paramers.level==0?'active':''}}" data-level="0" bind:tap="levelSelected">所有级别</text>
+				<text class="b {{paramers.level==1?'active':''}}" data-level="1" bind:tap="levelSelected">入门级</text>
+				<text class="b {{paramers.level==2?'active':''}}" data-level="2" bind:tap="levelSelected">中端级</text>
+				<text class="b {{paramers.level==3?'active':''}}" data-level="3" bind:tap="levelSelected">高配级</text>
+			</view>
+		</view>
+		<view id="confirm">
+			<view class="cancle" bind:tap="sortByCat"><text>取消</text></view>
+			<view class="confirm" bind:tap="searchGoods"><text>确定</text></view>
+		</view>
+	</view>
+	
+</view>

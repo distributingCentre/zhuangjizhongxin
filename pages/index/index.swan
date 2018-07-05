@@ -1,0 +1,110 @@
+<view class="container">
+    <view class="header">
+        <view class="search">
+            <text class="iconfont icon-sousuo"></text>
+            <input class="search-value" type="text" placeholder="有你想要的" />
+        </view>
+        <view bind:tap="viewMessage" class="msg">
+            <text class="iconfont icon-xiaoxi"></text>
+            <view style="display: {{hasMessage?'block':'none'}}" class="red-point"></view>
+        </view>
+    </view>
+    <view class="banner">
+        <swiper class="swiper-box" autoplay="true" interval="3000" duration="500">
+                <swiper-item s-for="adv in advList" class="swiper-item">
+                    <image src="{{adv.path}}" class="slide-image" width="355" height="150" />
+                </swiper-item>
+
+        </swiper>
+    </view>
+    <view class="content">
+    	<view class="recommend">
+    		<view class="rec-header">
+    			<view class="rec-title">
+    				<text>快速<text class="emphasize">推荐</text></text>
+    				<view class="border"></view>
+    			</view>
+    			<view class="rec-nav">
+    				<view data-type-id="147" bind:tap="toggleNav" class="nav-item {{recNavId==147?'active':''}}">英特尔</view>
+    				<view data-type-id="148" bind:tap="toggleNav" class="nav-item {{recNavId==148?'active':''}}">AMD</view>
+    			</view>
+    		</view>
+    		<view class="main">
+    			<view class="main-left">
+    				<view s-for="list in goodsList" class="diy-item">
+    					<view class="diy-item-img">
+    						<image src="{{list.cover}}"></image>
+    					</view>
+    					<view class="diy-name">
+    						<text>{{list.name}}</text>
+    					</view>
+    				</view>
+    			</view>
+    			<view class="main-right">
+    				<view class="host-img">
+    					<image src="{{currentGoods.cover}}"></image>
+    				</view>
+    				<view class="host-name">
+    					<text>{{currentGoods.goods_name}}</text>
+    				</view>
+    				<view class="host-price">
+    					<text>&#65509;{{currentGoods.price}}</text>
+    				</view>
+    				<view class="toggle">
+    					<view bind:tap="toggleGoods" class="btn another">
+    						<text>换一个</text>
+    					</view>
+    					<view bind:tap="diyConfig" class="btn dingzhi">
+    						<text>定制</text>
+    					</view>
+    				</view>
+    			</view>
+    		</view>
+    	</view>
+    	<view class="shop">
+    		<view class="shop-header">
+    			<view class="shop-title">
+    				<text>精选<text class="emphasize">店铺</text></text>
+    				<view class="border"></view>
+    			</view>
+    			<view bind:tap="moreShop" class="more-shop">
+    				<text>更多好店</text>
+    				<text class="triangle"></text>
+    			</view>
+    		</view>
+    		<view s-for="list in shopList" class="shop-list">
+    			<view class="shop-top">
+    				<view class="shop-name">
+    					<view class="shop-img">
+    						<image src="{{list.shop_img}}"></image>
+    					</view>
+    					<view><text>{{list.shop_name}}</text></view>
+    				</view>
+    				<view data-id={{list.id}} bind:tap="linkToShop" class="go-shop">
+    					<text>进店</text>
+    				</view>
+    			</view>
+
+    			<view class="goods">
+    				<view s-for="goods in list.goods_info" class="goods-item">
+    					<view class="goods-img">
+    						<image src="{{goods.cover}}"></image>
+    					</view>
+    					<view class="goods-price">&#65509;{{goods.price}}</view>
+    				</view>
+
+    			</view>
+				
+				<view class="score">
+					<view class="score-item"><text>销量{{list.sales_volume}}</text></view>
+					<view class="score-item"><text>好评{{list.praise_rate}}%</text></view>
+					<view class="score-item"><text>收藏人数{{list.collection_volume}}</text></view>
+				</view>
+    		</view>
+    	</view>
+    </view>
+
+    <view class="ICP">
+    	<text>© 2018 北京和勤新泰技术有限公司 </text><text>京ICP备05081996号-6</text>
+    </view>
+</view>

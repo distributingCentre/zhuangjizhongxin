@@ -1,0 +1,81 @@
+<view class="header">
+	<view class="user">
+		<image src="{{userInfo.avatarUrl}}"></image>
+		<text>{{userInfo.nickName}}</text>
+	</view>
+	<view class="setting">
+		<text bind:tap="setting" class="iconfont icon-shezhi"></text>
+	</view>
+</view>
+<view class="my-order">
+	<view class="my-order-title">
+		<text>我的订单</text>
+	</view>
+	<view class="my-order-detail">
+		<view data-parameter="2" class="w-pay" bind:tap="linkTo">
+				<text class="iconfont icon-daifukuan"></text>			
+				<text>待付款</text>			
+		</view>
+		<view data-parameter="3" class="w-receive" bind:tap="linkTo">
+			<text class="iconfont icon-daishouhuo"></text>
+			<text>待收货</text>
+		</view>
+		<view data-parameter="1" class="all-orders" bind:tap="linkTo">
+			<text class="iconfont icon-quanbudingdan"></text>
+			<text>全部订单</text>
+		</view>
+	</view>
+</view>
+<view class="my-store">
+	<view class="title">
+		<text>我的收藏</text>
+	</view>
+	<view class="lists">
+		<view class="item">
+			<navigator style="display: flex;flex-direction: column; align-items: center;" url="/pages/store/store?index=1" hover-class="navigator-hover">
+				<text class="num">{{userData.diy_collect}}</text>
+				<text class="list">配置收藏</text>
+			</navigator>
+		</view>
+		<view class="item">
+			<navigator style="display: flex;flex-direction: column; align-items: center;" url="/pages/store/store?index=2" hover-class="navigator-hover">
+				<text class="num">{{userData.store_collect}}</text>
+				<text class="list">店铺收藏</text>
+			</navigator>
+		</view>
+	</view>
+</view>
+
+<view class="my-message">
+	<view class="title">
+		<text>我的消息</text>
+	</view>
+	<view class="lists">
+		<view class="item" data-index="1" bind:tap="viewMessage">
+			<text class="num">{{userData.sys_message}}</text>
+			<text class="list">系统消息</text>
+		</view>
+		<view class="item" data-index="2" bind:tap="viewMessage">
+			<text class="num">{{userData.logistics_message}}</text>
+			<text class="list">物流消息</text>
+		</view>
+		<view class="item" data-index="3" bind:tap="viewMessage">
+			<text class="num">{{userData.order_message}}</text>
+			<text class="list">订单消息</text>
+		</view>
+	</view>
+</view>
+
+<view class="seller-center">
+	<view class="title">
+		<text>卖家中心</text>
+	</view>
+	<view class="contents">
+		<view class="tips">
+			<text>您还没有开通店铺</text>
+		</view>
+		<view bind:tap="addshop" class="btn">
+			<text>我要开店</text>
+		</view>
+	</view>
+</view>
